@@ -113,8 +113,8 @@ function Hero() {
         height={1024}
         onLoad={() => setImgLoaded(true)}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/45 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-20 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center min-h-[100vh]">
         <div>
