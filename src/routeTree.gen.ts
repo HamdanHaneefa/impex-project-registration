@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IfpdMeetRouteImport } from './routes/ifpd-meet'
 import { Route as IndexRouteImport } from './routes/index'
 
+const IfpdMeetRoute = IfpdMeetRouteImport.update({
+  id: '/ifpd-meet',
+  path: '/ifpd-meet',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ifpd-meet': typeof IfpdMeetRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ifpd-meet': typeof IfpdMeetRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ifpd-meet': typeof IfpdMeetRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/ifpd-meet'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ifpd-meet'
+  id: '__root__' | '/' | '/ifpd-meet'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IfpdMeetRoute: typeof IfpdMeetRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ifpd-meet': {
+      id: '/ifpd-meet'
+      path: '/ifpd-meet'
+      fullPath: '/ifpd-meet'
+      preLoaderRoute: typeof IfpdMeetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IfpdMeetRoute: IfpdMeetRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
