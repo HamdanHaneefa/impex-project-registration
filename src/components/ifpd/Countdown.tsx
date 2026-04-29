@@ -30,12 +30,12 @@ export function Countdown({ compact = false }: { compact?: boolean }) {
       {items.map((i) => (
         <div
           key={i.label}
-          className="rounded-xl bg-white/10 backdrop-blur border border-white/15 px-2 py-3 sm:px-3 sm:py-4 text-center"
+          className="rounded-xl bg-black/60 backdrop-blur-md border border-white/40 px-2 py-3 sm:px-3 sm:py-4 text-center shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
-          <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums tracking-tight">
+          <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             {String(i.value).padStart(2, "0")}
           </div>
-          <div className="mt-0.5 text-[10px] sm:text-xs uppercase tracking-widest text-white/70">
+          <div className="mt-0.5 text-[10px] sm:text-xs uppercase tracking-widest font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
             {i.label}
           </div>
         </div>

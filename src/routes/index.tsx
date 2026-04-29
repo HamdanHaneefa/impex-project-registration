@@ -20,11 +20,11 @@ import {
 } from "lucide-react";
 import logo from "@/assets/impex-logo.png";
 import heroImg from "@/assets/ifpd-event-hero.jpg";
-import speakerImg from "@/assets/speaker-renjith.jpg";
 import { Countdown } from "@/components/ifpd/Countdown";
 import { RegistrationForm } from "@/components/ifpd/RegistrationForm";
 import { StickyCTA } from "@/components/ifpd/StickyCTA";
 import { Reveal } from "@/components/site/Reveal";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,20 +65,32 @@ function IFPDMeet() {
 }
 
 function TopBar() {
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  
   return (
-    <header className="absolute top-0 inset-x-0 z-30">
+    <header className="absolute top-0 inset-x-0 z-30 bg-black/30 backdrop-blur-md border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="IMPEX" className="h-7 md:h-8 w-auto brightness-0 invert" />
-          <span className="hidden sm:inline text-xs font-semibold tracking-widest text-white/80 uppercase">
+          <div className="relative h-7 md:h-8">
+            {!logoLoaded && <div className="h-7 md:h-8 w-20 bg-white/20 animate-pulse rounded" />}
+            <img 
+              src={logo} 
+              alt="IMPEX" 
+              className={`h-7 md:h-8 w-auto brightness-0 invert drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onLoad={() => setLogoLoaded(true)}
+            />
+          </div>
+          <span className="hidden sm:inline text-xs font-bold tracking-widest text-white uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
             IFPD Meet 2026
           </span>
         </div>
         <a
           href="#register"
-          className="hidden sm:inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white px-4 py-2 text-sm font-semibold hover:bg-white/20"
+          className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2.5 text-sm font-bold hover:bg-white/30 shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
-          Register <ArrowRight className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">Register</span>
+          <span className="sm:hidden">Register</span>
+          <ArrowRight className="h-3.5 w-3.5" />
         </a>
       </div>
     </header>
@@ -86,31 +98,37 @@ function TopBar() {
 }
 
 function Hero() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  
   return (
     <section className="relative min-h-[100vh] overflow-hidden text-white">
+      {!imgLoaded && (
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 animate-pulse" />
+      )}
       <img
         src={heroImg}
         alt="IFPD Meet 2026 venue"
-        className="absolute inset-0 h-full w-full object-cover"
+        className={`absolute inset-0 h-full w-full object-cover scale-110 transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
         width={1536}
         height={1024}
+        onLoad={() => setImgLoaded(true)}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.16_0.02_270)/0.92] via-[oklch(0.22_0.08_12)/0.85] to-[oklch(0.48_0.22_13)/0.75]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-20 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center min-h-[100vh]">
         <div>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur border border-white/20 px-3.5 py-1.5"
+            className="inline-flex items-center gap-2 rounded-full bg-black/50 backdrop-blur-md border border-white/40 px-3.5 py-2 shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-80 animate-ping" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-widest">
+            <span className="text-xs font-bold uppercase tracking-widest text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
               Limited Seats · By Invitation
             </span>
           </motion.div>
@@ -119,10 +137,11 @@ function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-5 text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+            className="mt-5 text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)' }}
           >
             IFPD Meet{" "}
-            <span className="bg-gradient-to-r from-white to-[oklch(0.85_0.12_14)] bg-clip-text text-transparent">
+            <span className="text-white">
               2026
             </span>
           </motion.h1>
@@ -131,7 +150,8 @@ function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-base sm:text-lg text-white/85 max-w-xl"
+            className="mt-4 text-base sm:text-lg text-white max-w-xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}
           >
             The flagship gathering for educators, institution heads and corporate leaders — experience the
             future of smart learning, AI whiteboards & hybrid collaboration, live.
@@ -154,7 +174,7 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-7"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-2">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-white mb-2 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
               Event begins in
             </p>
             <Countdown />
@@ -164,17 +184,17 @@ function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-7 flex flex-wrap gap-3"
+            className="mt-7 flex flex-col sm:flex-row flex-wrap gap-3"
           >
             <a
               href="#register"
-              className="inline-flex items-center gap-2 rounded-full bg-white text-primary px-6 py-3.5 text-sm font-semibold hover:bg-white/90 shadow-brand"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary px-6 py-4 text-sm font-bold hover:bg-white/90 shadow-[0_4px_20px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_24px_rgba(255,255,255,0.4)] transition-all"
             >
               Reserve My Free Seat <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#experience"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 backdrop-blur px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/15"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/50 bg-black/40 backdrop-blur-md px-6 py-4 text-sm font-bold text-white hover:bg-black/60 shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
             >
               What to Expect
             </a>
@@ -195,9 +215,9 @@ function Hero() {
 
 function DetailChip({ icon: Icon, label }: { icon: any; label: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-xl bg-white/8 backdrop-blur border border-white/15 px-3 py-2.5">
-      <Icon className="h-4 w-4 text-white/80 shrink-0" />
-      <span className="text-xs sm:text-sm font-semibold text-white truncate">{label}</span>
+    <div className="flex items-center gap-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/30 px-3 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+      <Icon className="h-4 w-4 text-white shrink-0" />
+      <span className="text-xs sm:text-sm font-bold text-white truncate drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">{label}</span>
     </div>
   );
 }
@@ -251,6 +271,8 @@ function Experience() {
 }
 
 function Speaker() {
+  const [speakerImgLoaded, setSpeakerImgLoaded] = useState(false);
+  
   return (
     <section className="py-16 sm:py-24 bg-background">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -260,13 +282,17 @@ function Speaker() {
         <Reveal delay={0.1}>
           <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-elegant grid md:grid-cols-5">
             <div className="md:col-span-2 relative bg-gradient-hero">
+              {!speakerImgLoaded && (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+              )}
               <img
-                src={speakerImg}
+                src="/Mr.-Renjith Kesav.jpeg"
                 alt="Mr. Renjith Kesav"
                 loading="lazy"
                 width={768}
                 height={960}
-                className="h-full w-full object-cover aspect-[4/5] md:aspect-auto"
+                className={`h-full w-full object-cover aspect-[4/5] md:aspect-auto transition-opacity duration-500 ${speakerImgLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onLoad={() => setSpeakerImgLoaded(true)}
               />
             </div>
             <div className="md:col-span-3 p-6 sm:p-10 flex flex-col justify-center">
@@ -276,6 +302,17 @@ function Speaker() {
               <h3 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
                 Mr. Renjith Kesav
               </h3>
+              <a
+                href="https://www.linkedin.com/in/renjitravikeshav/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors w-fit"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                View LinkedIn Profile
+              </a>
               <p className="mt-3 text-base sm:text-lg font-semibold text-primary">
                 "Future-Ready Education: Challenges, Strategies & Smart Solutions"
               </p>
@@ -392,12 +429,22 @@ function FinalRegister() {
 }
 
 function Footer() {
+  const [footerLogoLoaded, setFooterLogoLoaded] = useState(false);
+  
   return (
     <footer className="bg-[var(--surface-darker)] text-white py-14 mt-4">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center gap-2">
-            <img src={logo} alt="IMPEX" className="h-7 brightness-0 invert" />
+            <div className="relative h-7">
+              {!footerLogoLoaded && <div className="h-7 w-20 bg-white/20 animate-pulse rounded" />}
+              <img 
+                src={logo} 
+                alt="IMPEX" 
+                className={`h-7 brightness-0 invert transition-opacity duration-300 ${footerLogoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onLoad={() => setFooterLogoLoaded(true)}
+              />
+            </div>
             <span className="text-xs font-semibold tracking-widest text-white/70 uppercase">
               IFPD Meet 2026
             </span>
