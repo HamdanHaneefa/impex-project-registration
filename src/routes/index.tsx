@@ -84,12 +84,12 @@ function TopBar() {
     <header className="absolute top-0 inset-x-0 z-30 bg-black/30 backdrop-blur-md border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="relative h-7 md:h-8">
-            {!logoLoaded && <div className="h-7 md:h-8 w-20 bg-white/20 animate-pulse rounded" />}
+          <div className="relative h-9 md:h-10">
+            {!logoLoaded && <div className="h-9 md:h-10 w-24 bg-white/20 animate-pulse rounded" />}
             <img 
               src={logo} 
               alt="Impex" 
-              className={`h-7 md:h-8 w-auto brightness-0 invert drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`h-9 md:h-10 w-auto brightness-0 invert drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={() => setLogoLoaded(true)}
             />
           </div>
@@ -114,14 +114,14 @@ function Hero() {
   const [imgLoaded, setImgLoaded] = useState(false);
   
   return (
-    <section className="relative min-h-[100vh] overflow-hidden text-white">
+    <section className="relative min-h-screen overflow-hidden text-white">
       {!imgLoaded && (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 animate-pulse" />
       )}
       <img
         src={heroImg}
         alt="IFPD Meet 2026 venue"
-        className={`absolute inset-0 h-full w-full object-cover scale-110 transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
         width={1536}
         height={1024}
         onLoad={() => setImgLoaded(true)}
@@ -129,7 +129,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/45 to-black/40" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:pt-32 sm:pb-20 grid lg:grid-cols-2 gap-6 lg:gap-14 items-center min-h-[100vh]">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-32 sm:pb-24 grid lg:grid-cols-2 gap-6 lg:gap-14 items-center min-h-screen">
         <div className="space-y-5 sm:space-y-6">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -158,24 +158,24 @@ function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3"
+            className="flex flex-col gap-3 md:flex-row md:gap-2 md:flex-wrap"
           >
-            <div className="flex items-center gap-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/30 px-3.5 sm:px-4 py-3 sm:py-3.5 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-              <Calendar className="h-4 sm:h-5 w-4 sm:w-5 text-white shrink-0" />
-              <span className="text-xs sm:text-sm font-bold text-white">9 May 2026</span>
+            <div className="flex items-center gap-3 rounded-3xl bg-black/70 backdrop-blur-md border border-white/20 px-5 py-3 md:px-7 md:py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
+              <Calendar className="h-5 w-5 text-white shrink-0" />
+              <span className="text-sm font-bold text-white whitespace-nowrap">9 May 2026</span>
             </div>
-            <div className="flex items-center gap-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/30 px-3.5 sm:px-4 py-3 sm:py-3.5 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-              <Clock className="h-4 sm:h-5 w-4 sm:w-5 text-white shrink-0" />
-              <span className="text-xs sm:text-sm font-bold text-white">10 AM – 3 PM</span>
+            <div className="flex items-center gap-3 rounded-3xl bg-black/70 backdrop-blur-md border border-white/20 px-5 py-3 md:px-7 md:py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
+              <Clock className="h-5 w-5 text-white shrink-0" />
+              <span className="text-sm font-bold text-white whitespace-nowrap">10 AM – 3 PM</span>
             </div>
             <a 
               href="https://maps.app.goo.gl/guRwj3hVagK21Yyu5"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/30 px-3.5 sm:px-4 py-3 sm:py-3.5 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:bg-black/70 transition-all"
+              className="flex items-center gap-3 rounded-3xl bg-black/70 backdrop-blur-md border border-white/20 px-5 py-3 md:px-7 md:py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.4)] hover:bg-black/80 transition-all"
             >
-              <MapPin className="h-4 sm:h-5 w-4 sm:w-5 text-white shrink-0" />
-              <span className="text-xs sm:text-sm font-bold text-white">Manjeri, Kerala</span>
+              <MapPin className="h-5 w-5 text-white shrink-0" />
+              <span className="text-sm font-bold text-white whitespace-nowrap">Manjeri, Kerala</span>
             </a>
           </motion.div>
 

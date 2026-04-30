@@ -31,8 +31,8 @@ export function StickyCTA() {
         href="https://wa.me/910000000000"
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-[0_4px_20px_rgba(34,197,94,0.4)] hover:shadow-[0_6px_24px_rgba(34,197,94,0.5)] transition-all hover:scale-110 ${
-          show ? "translate-y-0 opacity-100" : "translate-y-0 opacity-100"
+        className={`fixed z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-[0_4px_20px_rgba(34,197,94,0.4)] hover:shadow-[0_6px_24px_rgba(34,197,94,0.5)] transition-all hover:scale-110 ${
+          show ? "bottom-20 md:bottom-6 right-4 md:right-6" : "bottom-6 right-4 md:right-6"
         }`}
         aria-label="Chat on WhatsApp"
       >
