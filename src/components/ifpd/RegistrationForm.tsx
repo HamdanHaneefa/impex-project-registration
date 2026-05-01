@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { CheckCircle2, Loader2, Phone, PartyPopper, ArrowRight } from "lucide-react";
+import { CheckCircle2, Loader2, Phone, PartyPopper, ArrowRight, AlertCircle, XCircle } from "lucide-react";
+import { submitRegistration } from "@/lib/registration";
+import type { RegistrationData } from "@/types/registration";
 
 type Props = { variant?: "hero" | "section"; id?: string };
 
 export function RegistrationForm({ variant = "section", id }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState("");
 
   const dark = variant === "hero";
@@ -20,12 +23,54 @@ export function RegistrationForm({ variant = "section", id }: Props) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    setError(null); // Clear any previous errors
     
-    // TODO: Backend integration with Supabase
-    await new Promise((r) => setTimeout(r, 1000));
-    
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data: RegistrationData = {
+        fullName: formData.get('fullName') as string,
+        phone: formData.get('phone') as string,
+        email: formData.get('email') as string,
+        designation: formData.get('designation') as string,
+        institute: formData.get('institute') as string,
+        attendees: formData.get('attendees') as string,
+        food: formData.get('food') as string,
+      };
+
+      const result = await submitRegistration(data);
+      
+      // Check if at least one storage succeeded
+      if (result.sheetsSuccess || result.supabaseSuccess) {
+        setSubmitted(true);
+        
+        // Log partial success warning (user won't see this)
+        if (result.errors.length > 0) {
+          console.warn('Partial success - some storage failed:', result.errors);
+        }
+      } else {
+        throw new Error('Both storage systems failed');
+      }
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      
+      // Set user-friendly error message
+      if (error instanceof Error) {
+        if (error.message.includes('not configured')) {
+          setError('Registration system is not configured. Please contact support.');
+        } else if (error.message.includes('Failed to fetch')) {
+          setError('Network error. Please check your internet connection and try again.');
+        } else if (error.message.includes('both primary and backup')) {
+          setError('Unable to save registration. Please try again or contact support.');
+        } else {
+          setError('Failed to submit registration. Please try again or contact support.');
+        }
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // ---------- SUCCESS STATE ----------
@@ -73,6 +118,40 @@ export function RegistrationForm({ variant = "section", id }: Props) {
           FREE Entry
         </span>
       </div>
+
+      {/* Error Message */}
+      {error && (
+        <div className={`mb-4 rounded-lg p-3 sm:p-4 ${
+          dark 
+            ? "bg-red-500/20 border border-red-500/30" 
+            : "bg-red-50 border border-red-200"
+        }`}>
+          <div className="flex items-start gap-2">
+            <AlertCircle className={`h-4 w-4 sm:h-5 sm:w-5 shrink-0 mt-0.5 ${
+              dark ? "text-red-300" : "text-red-600"
+            }`} />
+            <div className="flex-1 min-w-0">
+              <h4 className={`text-xs sm:text-sm font-semibold ${
+                dark ? "text-red-200" : "text-red-800"
+              }`}>
+                Registration Failed
+              </h4>
+              <p className={`mt-1 text-[11px] sm:text-xs ${
+                dark ? "text-red-300" : "text-red-700"
+              }`}>
+                {error}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setError(null)}
+              className={`shrink-0 ${dark ? "text-red-300 hover:text-red-200" : "text-red-600 hover:text-red-800"}`}
+            >
+              <XCircle className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
         <div className="sm:col-span-2">

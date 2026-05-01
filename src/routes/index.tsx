@@ -267,7 +267,7 @@ function WhoShouldAttend() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-subtle">
+    <section className="py-10 sm:py-24 bg-gradient-subtle">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader
@@ -276,15 +276,15 @@ function WhoShouldAttend() {
             sub="If you're responsible for technology decisions, classroom innovation, or institutional growth — this is for you."
           />
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mt-6 sm:mt-10">
           {attendees.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.05}>
-              <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-card hover:shadow-elegant transition-all">
-                <div className="h-11 w-11 rounded-xl bg-primary/10 grid place-items-center">
-                  <a.icon className="h-5 w-5 text-primary" />
+              <div className="h-full rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-card hover:shadow-elegant transition-all">
+                <div className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl bg-primary/10 grid place-items-center">
+                  <a.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 </div>
-                <h3 className="mt-4 text-base sm:text-lg font-bold text-foreground">{a.title}</h3>
-                <ul className="mt-3 space-y-2">
+                <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-bold text-foreground">{a.title}</h3>
+                <ul className="mt-2 sm:mt-3 space-y-1.5 sm:space-y-2">
                   {a.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -476,7 +476,7 @@ const experiences = [
 
 function Experience() {
   return (
-    <section id="experience" className="py-16 sm:py-24 bg-background">
+    <section id="experience" className="py-10 sm:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader
@@ -485,14 +485,14 @@ function Experience() {
             sub="See, touch, and try Impex innovations in action"
           />
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {experiences.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.05}>
-              <div className="group h-full rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-card hover:shadow-elegant transition-all hover:-translate-y-1">
-                <div className="h-11 w-11 rounded-xl bg-gradient-primary grid place-items-center shadow-brand">
-                  <e.icon className="h-5 w-5 text-primary-foreground" />
+              <div className="group h-full rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-card hover:shadow-elegant transition-all hover:-translate-y-1">
+                <div className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl bg-gradient-primary grid place-items-center shadow-brand">
+                  <e.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
                 </div>
-                <h3 className="mt-4 text-base sm:text-lg font-bold text-foreground">{e.title}</h3>
+                <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-bold text-foreground">{e.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{e.desc}</p>
               </div>
             </Reveal>
@@ -580,7 +580,7 @@ const reasons = [
 
 function WhyAttend() {
   return (
-    <section className="py-16 sm:py-24 bg-background">
+    <section className="py-10 sm:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader 
@@ -589,17 +589,17 @@ function WhyAttend() {
             sub="Make the most of this exclusive opportunity"
           />
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {reasons.map((r, i) => (
             <Reveal key={r.title} delay={i * 0.05}>
-              <div className="relative h-full rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elegant transition-all hover:-translate-y-1">
+              <div className="relative h-full rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-card hover:shadow-elegant transition-all hover:-translate-y-1">
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-lg">
                   {i + 1}
                 </div>
-                <div className="h-11 w-11 rounded-xl bg-accent grid place-items-center">
-                  <r.icon className="h-5 w-5 text-primary" />
+                <div className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl bg-accent grid place-items-center">
+                  <r.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 </div>
-                <h3 className="mt-4 text-base sm:text-lg font-bold text-foreground">{r.title}</h3>
+                <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-bold text-foreground">{r.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{r.desc}</p>
               </div>
             </Reveal>
