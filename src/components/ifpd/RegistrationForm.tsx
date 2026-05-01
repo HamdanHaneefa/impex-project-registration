@@ -10,6 +10,7 @@ export function RegistrationForm({ variant = "section", id }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("+91 ");
 
   const dark = variant === "hero";
   const labelCls = dark ? "text-white/80" : "text-foreground/80";
@@ -20,6 +21,40 @@ export function RegistrationForm({ variant = "section", id }: Props) {
     ? "bg-white/10 backdrop-blur-xl border border-white/20"
     : "bg-card border border-border shadow-elegant";
 
+  // Format phone number with space after country code
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    
+    // If empty or just typing, add +91 prefix
+    if (!value || value === '+') {
+      setPhone('+91 ');
+      return;
+    }
+    
+    // Ensure it starts with +91
+    if (!value.startsWith('+91')) {
+      value = '+91 ' + value.replace(/^\+?91?\s*/, '');
+    }
+    
+    // Remove all non-digit characters except + and space after +91
+    const prefix = '+91 ';
+    const numbers = value.slice(prefix.length).replace(/\D/g, '');
+    
+    // Limit to 10 digits after +91
+    const limitedNumbers = numbers.slice(0, 10);
+    
+    setPhone(prefix + limitedNumbers);
+  };
+
+  // Validate phone number on form submit
+  const validatePhone = (phoneNumber: string): boolean => {
+    // Remove spaces and check format
+    const cleaned = phoneNumber.replace(/\s/g, '');
+    // Must be +91 followed by exactly 10 digits
+    const phoneRegex = /^\+91[6-9]\d{9}$/;
+    return phoneRegex.test(cleaned);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
@@ -27,9 +62,18 @@ export function RegistrationForm({ variant = "section", id }: Props) {
     
     try {
       const formData = new FormData(e.currentTarget);
+      const phoneValue = formData.get('phone') as string;
+      
+      // Validate phone number
+      if (!validatePhone(phoneValue)) {
+        setError('Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.');
+        setSubmitting(false);
+        return;
+      }
+      
       const data: RegistrationData = {
         fullName: formData.get('fullName') as string,
-        phone: formData.get('phone') as string,
+        phone: phoneValue,
         email: formData.get('email') as string,
         designation: formData.get('designation') as string,
         institute: formData.get('institute') as string,
@@ -175,9 +219,15 @@ export function RegistrationForm({ variant = "section", id }: Props) {
               required
               type="tel"
               name="phone"
+              value={phone}
+              onChange={handlePhoneChange}
               placeholder="+91 98765 43210"
               autoComplete="tel"
-              inputMode="tel"
+              inputMode="numeric"
+              minLength={14}
+              maxLength={14}
+              pattern="^\+91 [6-9]\d{9}$"
+              title="Enter a valid 10-digit Indian mobile number (e.g., +91 98765 43210)"
               className={`w-full rounded-lg border pl-9 sm:pl-10 pr-3 sm:pr-3.5 py-2.5 sm:py-3 text-xs sm:text-sm outline-none transition-all ${inputCls}`}
             />
           </div>

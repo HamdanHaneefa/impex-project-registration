@@ -66,6 +66,7 @@ function IFPDMeet() {
         <WhoShouldAttend />
         <Experience />
         <XSeriesShowcase />
+        <ProductGallery />
         <AboutImpex />
         <WhyAttend />
         <Urgency />
@@ -81,25 +82,29 @@ function TopBar() {
   const [logoLoaded, setLogoLoaded] = useState(false);
   
   return (
-    <header className="absolute top-0 inset-x-0 z-30 bg-black/30 backdrop-blur-md border-b border-white/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="absolute top-0 inset-x-0 z-30">
+      {/* Gradient background with reduced opacity for darker look */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#E91E63]/80 via-[#9C27B0]/80 to-[#1E88E5]/80 backdrop-blur-sm"></div>
+      
+      {/* Content */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="relative h-9 md:h-10">
             {!logoLoaded && <div className="h-9 md:h-10 w-24 bg-white/20 animate-pulse rounded" />}
             <img 
               src={logo} 
               alt="Impex" 
-              className={`h-9 md:h-10 w-auto brightness-0 invert drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`h-9 md:h-10 w-auto brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={() => setLogoLoaded(true)}
             />
           </div>
-          <span className="hidden sm:inline text-xs font-bold tracking-widest text-white uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+          <span className="hidden sm:inline text-xs font-bold tracking-widest text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
             IFPD Meet 2026
           </span>
         </div>
         <a
           href="#register"
-          className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2.5 text-sm font-bold hover:bg-white/30 shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+          className="inline-flex items-center gap-2 rounded-full bg-white text-[#E91E63] px-5 py-2.5 text-sm font-bold hover:bg-white/95 transition-all shadow-lg hover:shadow-xl hover:scale-105"
         >
           <span className="hidden sm:inline">Register</span>
           <span className="sm:hidden">Register</span>
@@ -322,19 +327,17 @@ function XSeriesShowcase() {
           />
         </Reveal>
 
-        {/* Video Placeholder */}
+        {/* YouTube Video Embed */}
         <Reveal delay={0.1}>
           <div className="mt-10 rounded-3xl overflow-hidden border border-border bg-card shadow-elegant">
-            <div className="relative aspect-video bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4 hover:bg-white/20 transition-all cursor-pointer">
-                    <Play className="h-8 w-8 sm:h-10 sm:w-10 text-white ml-1" />
-                  </div>
-                  <p className="text-white text-sm sm:text-base font-semibold">Watch xSeries Product Demo</p>
-                  <p className="text-white/60 text-xs sm:text-sm mt-1">2:30 minutes</p>
-                </div>
-              </div>
+            <div className="relative aspect-video">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/hZoyoHAnK94"
+                title="Watch xSeries Product Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </Reveal>
@@ -395,7 +398,7 @@ function AboutImpex() {
           />
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mt-10">
+        <div className="max-w-3xl mx-auto mt-10">
           <Reveal delay={0.1}>
             <div className="space-y-6">
               <div>
@@ -408,11 +411,11 @@ function AboutImpex() {
                 <h3 className="text-xl font-bold text-foreground mb-3">Why Choose Impex?</h3>
                 <ul className="space-y-3">
                   {[
-                    "10+ years of experience in EdTech",
-                    "5000+ installations nationwide",
-                    "24/7 customer support",
-                    "Comprehensive training programs",
-                    "Competitive pricing with flexible EMI",
+                    "25+ years of trusted experience in the market",
+                    "Kerala's largest TV seller",
+                    "22 service centers across Kerala",
+                    "4-year comprehensive warranty",
+                    "Competitive pricing with flexible EMI options",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2 text-muted-foreground">
                       <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
@@ -423,23 +426,76 @@ function AboutImpex() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-          <Reveal delay={0.2}>
-            {/* Event Promo Video Placeholder */}
-            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-elegant">
-              <div className="relative aspect-video bg-gradient-to-br from-primary/20 via-primary/10 to-background">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 mb-3 hover:bg-primary/30 transition-all cursor-pointer">
-                      <Play className="h-8 w-8 text-primary ml-1" />
-                    </div>
-                    <p className="text-foreground text-sm font-semibold">IFPD Meet 2026 Invitation</p>
-                    <p className="text-muted-foreground text-xs mt-1">1:45 minutes</p>
-                  </div>
+function ProductGallery() {
+  const products = [
+    {
+      image: "/xseries-display-1.png",
+      title: "xSeries AI Interactive Displays",
+      subtitle: "Intelligence. Interaction. Innovation.",
+      description: "Engineered to transform classrooms and conference rooms with powerful AI-driven interactivity"
+    },
+    {
+      image: "/classroom-teaching.png",
+      title: "Empowering the Next Generation",
+      description: "Transform traditional classrooms into interactive learning environments"
+    },
+    {
+      image: "/whiteboard-ai.png",
+      title: "WhiteBoard AI",
+      description: "WhiteBoard AI enhances interactive teaching and collaboration with integrated AI-powered tools designed to simplify content creation, improve clarity, and support intelligent workflows."
+    },
+    {
+      image: "/edu-ai-app.png",
+      title: "Edu AI Learning App",
+      description: "The integrated Edu AI app provides structured digital learning resources designed to support students and educators with curriculum-aligned study materials, interactive assessments, and engaging video lessons."
+    }
+  ];
+
+  return (
+    <section className="py-16 sm:py-24 bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <SectionHeader
+            eyebrow="Product Gallery"
+            title="See Impex IFPD in Action"
+            sub="Real classrooms, real results, real transformation"
+          />
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-10">
+          {products.map((product, i) => (
+            <Reveal key={product.title} delay={i * 0.1}>
+              <div className="group rounded-2xl overflow-hidden border border-border bg-card shadow-card hover:shadow-elegant transition-all">
+                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5 sm:p-6">
+                  {product.subtitle && (
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+                      {product.subtitle}
+                    </p>
+                  )}
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
+                    {product.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {product.description}
+                  </p>
                 </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

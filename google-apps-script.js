@@ -20,11 +20,19 @@ function doPost(e) {
     // Create timestamp
     const timestamp = new Date();
     
+    // Get the next row number
+    const lastRow = sheet.getLastRow();
+    const nextRow = lastRow + 1;
+    
+    // Format phone column as plain text BEFORE writing data
+    const phoneCell = sheet.getRange(nextRow, 3); // Column C (Phone Number)
+    phoneCell.setNumberFormat('@'); // Plain text format
+    
     // Prepare row data matching the sheet headers
     const rowData = [
       timestamp,
       data.fullName || '',
-      data.phone || '',
+      data.phone || '',  // Will be stored as text now
       data.email || '',
       data.designation || '',
       data.institute || '',
@@ -32,8 +40,9 @@ function doPost(e) {
       data.food || ''
     ];
     
-    // Append the data to the sheet
-    sheet.appendRow(rowData);
+    // Write the data to the sheet
+    const range = sheet.getRange(nextRow, 1, 1, rowData.length);
+    range.setValues([rowData]);
     
     // Return success response
     return ContentService

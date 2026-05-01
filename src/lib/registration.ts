@@ -14,23 +14,27 @@ export async function submitRegistration(data: RegistrationData): Promise<Submis
     errors: []
   };
 
-  // 1. Submit to Google Sheets (Primary)
-  try {
-    await submitToGoogleSheets(data);
+  // Submit to BOTH simultaneously for faster performance
+  const [sheetsResult, supabaseResult] = await Promise.allSettled([
+    submitToGoogleSheets(data),
+    submitToSupabase(data)
+  ]);
+
+  // Check Google Sheets result
+  if (sheetsResult.status === 'fulfilled') {
     result.sheetsSuccess = true;
     console.log('✅ Google Sheets: Success');
-  } catch (error) {
-    console.error('❌ Google Sheets: Failed', error);
+  } else {
+    console.error('❌ Google Sheets: Failed', sheetsResult.reason);
     result.errors.push('Failed to save to primary storage');
   }
 
-  // 2. Submit to Supabase (Backup) - Always try, even if Sheets fails
-  try {
-    await submitToSupabase(data);
+  // Check Supabase result
+  if (supabaseResult.status === 'fulfilled') {
     result.supabaseSuccess = true;
     console.log('✅ Supabase: Success');
-  } catch (error) {
-    console.error('❌ Supabase: Failed', error);
+  } else {
+    console.error('❌ Supabase: Failed', supabaseResult.reason);
     result.errors.push('Failed to save to backup storage');
   }
 
