@@ -151,6 +151,22 @@
 
   html {
     scroll-behavior: smooth;
+    /* Base font size for mobile - normal */
+    font-size: 100%;
+  }
+
+  /* Scale down content on tablets and larger to reduce congestion */
+  @media (min-width: 768px) {
+    html {
+      font-size: 87.5%; /* 87.5% for tablets */
+    }
+  }
+
+  /* Scale down more on desktop to match the 75% zoom look */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 81.25%; /* 81.25% for desktop */
+    }
   }
 
   body {

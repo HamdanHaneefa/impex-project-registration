@@ -1,0 +1,135 @@
+📧 HOW TO SEND EMAILS FROM OFFICIAL IMPEX EMAIL
+================================================
+
+PROBLEM: Emails are being sent from hamdanhaneefa23@gmail.com
+SOLUTION: Send from Info@impextechnologies.in instead
+
+You have 3 options. Choose the one that works best for you:
+
+==========================================
+OPTION 1: ADD EMAIL ALIAS (RECOMMENDED - EASIEST)
+==========================================
+
+This allows your Gmail account to send emails AS Info@impextechnologies.in
+
+STEP 1: Add Email Alias in Gmail
+---------------------------------
+1. Open Gmail (hamdanhaneefa23@gmail.com)
+2. Click Settings (gear icon) → See all settings
+3. Go to "Accounts and Import" tab
+4. Under "Send mail as", click "Add another email address"
+5. Enter:
+   - Name: Impex Team
+   - Email: Info@impextechnologies.in
+6. Click "Next Step"
+7. Gmail will send a verification email to Info@impextechnologies.in
+8. Open that email and click the verification link
+9. Once verified, you're done!
+
+STEP 2: Update Google Apps Script
+----------------------------------
+1. The script is already updated with the new code
+2. Just copy the updated google-apps-script.js to your Apps Script
+3. Save and deploy new version
+
+STEP 3: Test
+------------
+1. Submit a test registration
+2. Check the email - it should now show "from: Impex Team <Info@impextechnologies.in>"
+
+✅ PROS: Easy, free, works immediately after verification
+❌ CONS: Requires access to Info@impextechnologies.in inbox for verification
+
+
+==========================================
+OPTION 2: USE GOOGLE WORKSPACE EMAIL
+==========================================
+
+If Info@impextechnologies.in is a Google Workspace email:
+
+STEP 1: Transfer Script Ownership
+----------------------------------
+1. Open your Google Sheet
+2. Go to Extensions → Apps Script
+3. Click "Deploy" → "Manage deployments"
+4. Share the script with Info@impextechnologies.in
+5. Transfer ownership to that account
+
+STEP 2: Run Script from Workspace Account
+------------------------------------------
+1. Log in as Info@impextechnologies.in
+2. Open the Google Sheet
+3. The script will now send emails from that account
+
+✅ PROS: Most professional, emails come directly from workspace account
+❌ CONS: Requires Google Workspace subscription, need to transfer ownership
+
+
+==========================================
+OPTION 3: USE EXTERNAL EMAIL SERVICE (ADVANCED)
+==========================================
+
+Use a service like SendGrid, Mailgun, or AWS SES:
+
+STEP 1: Sign up for Email Service
+----------------------------------
+1. Create account with SendGrid (free tier: 100 emails/day)
+2. Verify your domain (impextechnologies.in)
+3. Get API key
+
+STEP 2: Update Apps Script
+---------------------------
+Replace MailApp.sendEmail with UrlFetchApp to call the API
+
+STEP 3: Configure DNS
+----------------------
+Add SPF, DKIM records to your domain
+
+✅ PROS: Professional, scalable, better deliverability
+❌ CONS: More complex setup, requires domain DNS access
+
+
+==========================================
+RECOMMENDED APPROACH FOR YOU:
+==========================================
+
+👉 USE OPTION 1 (Email Alias)
+
+Why?
+- Easiest and fastest
+- Free
+- No technical complexity
+- Works perfectly for your use case
+- Emails will show as from "Impex Team <Info@impextechnologies.in>"
+
+Steps:
+1. Add Info@impextechnologies.in as alias in Gmail settings
+2. Verify the email (check Info@impextechnologies.in inbox)
+3. Update Google Apps Script with new code (already done!)
+4. Deploy new version
+5. Test registration
+
+That's it! 🎉
+
+
+==========================================
+CURRENT STATUS:
+==========================================
+
+✅ Script updated with new email code
+✅ Reply-to set to Info@impextechnologies.in
+✅ From name set to "IFPD Meet 2026 - Impex"
+
+⏳ WAITING FOR: You to add email alias in Gmail and verify it
+
+
+==========================================
+NEED HELP?
+==========================================
+
+If you don't have access to Info@impextechnologies.in inbox:
+- Ask the person who manages that email to add hamdanhaneefa23@gmail.com as an authorized sender
+- Or use Option 2 (Google Workspace) if you have it
+- Or create a new email like events@impextechnologies.in and use that instead
+
+==========================================

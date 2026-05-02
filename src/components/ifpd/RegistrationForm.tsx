@@ -146,20 +146,20 @@ export function RegistrationForm({ variant = "section", id }: Props) {
             <span className="line-through opacity-60 mr-2">₹9,999</span>
             <span className="text-green-500">Join FREE</span>
           </h3>
-          <p className={`text-[11px] sm:text-xs md:text-sm ${dark ? "text-white/70" : "text-muted-foreground"}`}>
-            First 50 participants only
+          <p className={`text-[11px] sm:text-xs md:text-sm font-bold ${dark ? "text-red-400" : "text-red-600"}`}>
+            ⚠️ Only 12 seats left! First 50 participants only
           </p>
         </div>
         <span
           className={`shrink-0 inline-flex items-center gap-1 sm:gap-1.5 rounded-full px-2 sm:px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider ${
-            dark ? "bg-green-500/90 text-white" : "bg-green-500 text-white"
+            dark ? "bg-red-500/90 text-white animate-pulse" : "bg-red-500 text-white animate-pulse"
           }`}
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full rounded-full bg-current opacity-75 animate-ping" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-current" />
           </span>
-          FREE Entry
+          FILLING FAST
         </span>
       </div>
 
@@ -255,7 +255,7 @@ export function RegistrationForm({ variant = "section", id }: Props) {
             <option value="" className="text-muted-foreground">Select Role</option>
             <option value="principal" className="text-foreground">Principal / Head of School</option>
             <option value="owner" className="text-foreground">School Owner / Trustee</option>
-            <option value="dean" className="text-foreground">College Principal / Dean</option>
+            <option value="dean" className="text-foreground">College Dean / Academic Director</option>
             <option value="it-head" className="text-foreground">IT Head / Coordinator</option>
             <option value="procurement" className="text-foreground">Purchase / Procurement Head</option>
             <option value="corporate" className="text-foreground">Corporate Decision Maker</option>
