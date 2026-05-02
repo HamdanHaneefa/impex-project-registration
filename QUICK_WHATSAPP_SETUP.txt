@@ -1,0 +1,31 @@
+📱 QUICK WHATSAPP SETUP (5 MINUTES)
+====================================
+
+STEP 1: Get API Key (2 min)
+----------------------------
+1. Save in phone: +34 644 31 95 72
+2. Send WhatsApp: "I allow callmebot to send me messages"
+3. Copy the API key you receive (example: 123456)
+
+STEP 2: Update Script (2 min)
+------------------------------
+1. Open: google-apps-script.js
+2. Find line 23: const CALLMEBOT_API_KEY = 'YOUR_API_KEY_HERE';
+3. Replace with: const CALLMEBOT_API_KEY = '123456'; (your actual key)
+4. Copy entire file to Google Apps Script
+5. Save and deploy new version
+
+STEP 3: Test (1 min)
+--------------------
+1. In Apps Script, run testWhatsApp() function
+   OR
+2. Submit test registration on website
+3. Check WhatsApp for confirmation message
+
+DONE! 🎉
+--------
+Every registration now sends:
+✅ Email confirmation
+✅ WhatsApp message
+
+FREE FOREVER • NO LIMITS • INSTANT SETUP

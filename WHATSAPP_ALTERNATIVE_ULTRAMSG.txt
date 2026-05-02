@@ -1,0 +1,124 @@
+📱 ALTERNATIVE WHATSAPP SOLUTION - ULTRAMSG (WORKS IMMEDIATELY)
+================================================================
+
+If CallMeBot doesn't respond, use UltraMsg instead!
+
+✅ FREE 7-day trial (no credit card)
+✅ Works immediately
+✅ Easy setup (5 minutes)
+✅ 100 messages/day free
+
+==========================================
+STEP 1: Create UltraMsg Account (2 minutes)
+==========================================
+
+1. Go to: https://ultramsg.com
+2. Click "Start Free Trial"
+3. Sign up with your email
+4. Verify your email
+5. You'll get instant access!
+
+==========================================
+STEP 2: Connect Your WhatsApp (2 minutes)
+==========================================
+
+1. After login, click "Instance" → "Create Instance"
+2. Scan QR code with your WhatsApp (the one you want to send FROM)
+3. Your WhatsApp is now connected!
+4. Copy your:
+   - Instance ID (looks like: instance12345)
+   - Token (looks like: abc123xyz)
+
+==========================================
+STEP 3: Update Google Apps Script (1 minute)
+==========================================
+
+Replace the sendWhatsAppMessage function with this:
+
+```javascript
+function sendWhatsAppMessage(data) {
+  // UltraMsg Configuration
+  const ULTRAMSG_INSTANCE = 'YOUR_INSTANCE_ID'; // Replace with your instance ID
+  const ULTRAMSG_TOKEN = 'YOUR_TOKEN'; // Replace with your token
+  
+  // Clean phone number
+  const cleanPhone = data.phone.replace(/\s/g, '').replace('+', '');
+  
+  // Create message
+  const message = `🎉 *Registration Confirmed!*
+
+Dear ${data.fullName},
+
+Your registration for *IFPD Meet 2026* is confirmed!
+
+📅 *Event Details:*
+Date: Saturday, 9 May 2026
+Time: 10:00 AM – 3:00 PM
+Venue: Mount Ridge International Convention Centre, Manjeri, Kerala
+
+📍 Get Directions: https://maps.app.goo.gl/guRwj3hVagK21Yyu5
+
+🎯 What to Expect:
+• Live xSeries IFPD demos
+• Keynote by Mr. Renjith Kesav
+• Network with 100+ leaders
+• Complimentary meals
+
+Need help? Call +91 97786 65499
+
+See you at the event!
+Team Impex`;
+
+  // UltraMsg API endpoint
+  const apiUrl = `https://api.ultramsg.com/${ULTRAMSG_INSTANCE}/messages/chat`;
+  
+  // Prepare payload
+  const payload = {
+    token: ULTRAMSG_TOKEN,
+    to: cleanPhone,
+    body: message
+  };
+  
+  // Send request
+  const options = {
+    method: 'post',
+    contentType: 'application/x-www-form-urlencoded',
+    payload: payload,
+    muteHttpExceptions: true
+  };
+  
+  const response = UrlFetchApp.fetch(apiUrl, options);
+  const responseCode = response.getResponseCode();
+  
+  if (responseCode !== 200) {
+    throw new Error('WhatsApp API error: ' + response.getContentText());
+  }
+  
+  return true;
+}
+```
+
+==========================================
+STEP 4: Test It!
+==========================================
+
+1. Save and deploy new version
+2. Run testWhatsApp() function
+3. Check your WhatsApp - message received! ✅
+
+==========================================
+ULTRAMSG PRICING
+==========================================
+
+FREE TRIAL:
+- 7 days free
+- 100 messages/day
+- All features
+
+AFTER TRIAL:
+- $20/month for 1000 messages
+- Or pay as you go: $0.02 per message
+
+For your event (50 registrations), cost = $1 total! 💰
+
+==========================================

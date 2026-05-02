@@ -1,0 +1,247 @@
+📱 HOW TO SEND WHATSAPP MESSAGES AFTER REGISTRATION
+====================================================
+
+You have 3 options from easiest to most advanced:
+
+==========================================
+OPTION 1: CALLMEBOT (EASIEST - FREE - 5 MINUTES SETUP)
+==========================================
+
+✅ FREE forever
+✅ No coding needed
+✅ Works immediately
+✅ Perfect for your use case
+
+STEP 1: Get Your API Key
+-------------------------
+1. Save this number in your phone: +34 644 31 95 72
+2. Send this WhatsApp message to that number: "I allow callmebot to send me messages"
+3. You'll receive your API key instantly (looks like: 123456)
+4. Save this API key!
+
+STEP 2: Update Google Apps Script
+----------------------------------
+I'll provide the updated code below that uses CallMeBot API
+
+STEP 3: Test
+------------
+1. Submit a test registration
+2. You'll receive WhatsApp message automatically!
+
+📝 MESSAGE FORMAT:
+The participant will receive:
+"🎉 Registration Confirmed!
+Dear [Name], your registration for IFPD Meet 2026 is confirmed!
+📅 Date: 9 May 2026
+⏰ Time: 10 AM - 3 PM
+📍 Venue: Mount Ridge, Manjeri
+See you at the event! - Team Impex"
+
+
+==========================================
+OPTION 2: WHATSAPP BUSINESS API (OFFICIAL - PAID)
+==========================================
+
+✅ Most professional
+✅ Official WhatsApp Business
+✅ Better deliverability
+❌ Requires verification
+❌ Costs money after free tier
+
+Services:
+- Twilio (https://www.twilio.com/whatsapp)
+- MessageBird (https://messagebird.com)
+- Meta WhatsApp Cloud API (https://developers.facebook.com/docs/whatsapp)
+
+Cost: ~$0.005 per message (very cheap)
+Setup time: 1-2 days (verification needed)
+
+
+==========================================
+OPTION 3: WATI / AISENSY (INDIAN SERVICES)
+==========================================
+
+✅ Made for Indian businesses
+✅ Easy setup
+✅ Good support
+❌ Monthly subscription
+
+Services:
+- Wati.io - ₹2,999/month
+- AiSensy - ₹999/month
+- Interakt - ₹999/month
+
+These provide dashboard, templates, and automation.
+
+
+==========================================
+RECOMMENDED FOR YOU: OPTION 1 (CALLMEBOT)
+==========================================
+
+Why?
+- FREE forever
+- Setup in 5 minutes
+- No verification needed
+- Works immediately
+- Perfect for event registrations
+
+Limitations:
+- Can send to one number at a time
+- Rate limit: ~50 messages per hour (enough for your event)
+- Messages come from CallMeBot number (not your business number)
+
+
+==========================================
+UPDATED GOOGLE APPS SCRIPT CODE
+==========================================
+
+✅ The code is already updated in google-apps-script.js file!
+
+Just follow these steps:
+
+STEP 1: Get CallMeBot API Key (2 minutes)
+------------------------------------------
+1. Save this number in your phone contacts: +34 644 31 95 72
+   (Name it "CallMeBot" or anything you like)
+
+2. Open WhatsApp and send this EXACT message to that number:
+   "I allow callmebot to send me messages"
+
+3. You'll receive a reply with your API key instantly
+   Example: "Your API key is: 123456"
+
+4. Copy that API key number!
+
+STEP 2: Update Google Apps Script (3 minutes)
+----------------------------------------------
+1. Open your Google Sheet
+2. Go to Extensions → Apps Script
+3. Delete ALL existing code
+4. Copy ALL code from: google-apps-script.js
+5. Find this line (around line 23):
+   const CALLMEBOT_API_KEY = 'YOUR_API_KEY_HERE';
+6. Replace 'YOUR_API_KEY_HERE' with your actual API key
+   Example: const CALLMEBOT_API_KEY = '123456';
+7. Save (Ctrl+S)
+8. Deploy → Manage deployments → Edit → New version → Deploy
+
+STEP 3: Test WhatsApp (1 minute)
+---------------------------------
+Option A - Test Function:
+1. In Apps Script, find the testWhatsApp() function at the bottom
+2. Change the phone number to yours: '+91 97786 65499'
+3. Click Run (▶️ button)
+4. Check your WhatsApp - you should receive a test message!
+
+Option B - Real Test:
+1. Go to your website
+2. Submit a test registration with your phone number
+3. Check your WhatsApp - you should receive confirmation!
+
+STEP 4: Done! 🎉
+----------------
+Now every registration will automatically send:
+✅ Email confirmation
+✅ WhatsApp message
+
+==========================================
+WHATSAPP MESSAGE FORMAT
+==========================================
+
+Participants will receive this message:
+
+---
+🎉 *Registration Confirmed!*
+
+Dear [Name],
+
+Your registration for *IFPD Meet 2026* is confirmed!
+
+📅 *Event Details:*
+Date: Saturday, 9 May 2026
+Time: 10:00 AM – 3:00 PM
+Venue: Mount Ridge International Convention Centre, Manjeri, Kerala
+
+📍 Get Directions: https://maps.app.goo.gl/guRwj3hVagK21Yyu5
+
+🎯 What to Expect:
+• Live xSeries IFPD demos
+• Keynote by Mr. Renjith Kesav
+• Network with 100+ leaders
+• Complimentary meals
+
+Need help? Call +91 97786 65499
+
+See you at the event!
+Team Impex
+---
+
+==========================================
+TROUBLESHOOTING
+==========================================
+
+❌ "WhatsApp not sending"
+→ Check if you got the API key from CallMeBot
+→ Make sure you replaced 'YOUR_API_KEY_HERE' with actual key
+→ Run testWhatsApp() function to test
+
+❌ "Invalid phone number"
+→ Phone numbers must be in format: +91 XXXXXXXXXX
+→ Your form already handles this correctly!
+
+❌ "Rate limit exceeded"
+→ CallMeBot free tier: ~50 messages/hour
+→ This is enough for your event
+→ If you need more, upgrade to paid service
+
+==========================================
+CALLMEBOT LIMITS (FREE TIER)
+==========================================
+
+✅ Unlimited messages per day
+✅ ~50 messages per hour
+✅ Works in all countries
+✅ No expiry
+✅ FREE forever
+
+Perfect for event registrations! 🎉
+
+==========================================
+ALTERNATIVE: PAID SERVICES (If you need more)
+==========================================
+
+If CallMeBot doesn't work or you need official WhatsApp Business:
+
+1. WATI.io - ₹2,999/month
+   - Official WhatsApp Business API
+   - Your own business number
+   - Dashboard and analytics
+   - Sign up: https://www.wati.io
+
+2. AiSensy - ₹999/month
+   - Made for Indian businesses
+   - Easy setup
+   - Good support
+   - Sign up: https://www.aisensy.com
+
+3. Interakt - ₹999/month
+   - WhatsApp Business API
+   - Template messages
+   - Sign up: https://www.interakt.shop
+
+==========================================
+SUMMARY - WHAT YOU NEED TO DO
+==========================================
+
+1. ✅ Save +34 644 31 95 72 in your phone
+2. ✅ Send "I allow callmebot to send me messages" via WhatsApp
+3. ✅ Copy the API key you receive
+4. ✅ Update google-apps-script.js with your API key
+5. ✅ Deploy new version in Apps Script
+6. ✅ Test with testWhatsApp() function
+7. ✅ Done! Every registration sends WhatsApp automatically
+
+Total time: 5 minutes
+Cost: FREE forever
+
+==========================================

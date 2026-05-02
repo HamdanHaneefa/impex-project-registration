@@ -5,19 +5,32 @@
  * 1. Open your Google Sheet
  * 2. Go to Extensions → Apps Script
  * 3. Copy this entire code and paste it there
- * 4. Save the project
- * 5. Deploy as Web App
+ * 4. Update CALLMEBOT_API_KEY below (see WHATSAPP_SETUP_INSTRUCTIONS.txt)
+ * 5. Save the project
+ * 6. Deploy as Web App
  * 
  * FEATURES:
  * - Saves registration to Google Sheets
  * - Sends confirmation email to participant automatically
- * - Optional WhatsApp notification (requires WhatsApp Business API)
+ * - Sends WhatsApp message to participant automatically (via CallMeBot)
  */
 
-// Configuration - UPDATE THESE VALUES
+// ==========================================
+// CONFIGURATION - UPDATE THESE VALUES
+// ==========================================
 const ORGANIZER_EMAIL = 'Info@impextechnologies.in';
 const ORGANIZER_PHONE = '+91 97786 65499';
 
+// CallMeBot API Key - Get yours by following WHATSAPP_SETUP_INSTRUCTIONS.txt
+// To get API key: Save +34 644 31 95 72 in your phone, send "I allow callmebot to send me messages"
+const CALLMEBOT_API_KEY = 'YOUR_API_KEY_HERE';  // ⚠️ REPLACE THIS with your actual API key
+
+// Set to true to enable WhatsApp notifications, false to disable
+const ENABLE_WHATSAPP = true;
+
+// ==========================================
+// MAIN FUNCTION - HANDLES REGISTRATION
+// ==========================================
 function doPost(e) {
   try {
     // Get the active spreadsheet
@@ -56,9 +69,21 @@ function doPost(e) {
     // Send confirmation email to participant
     try {
       sendConfirmationEmail(data);
+      console.log('✅ Email sent successfully');
     } catch (emailError) {
-      console.error('Email sending failed:', emailError);
+      console.error('❌ Email sending failed:', emailError);
       // Don't fail the registration if email fails
+    }
+    
+    // Send WhatsApp message to participant
+    if (ENABLE_WHATSAPP && CALLMEBOT_API_KEY !== 'YOUR_API_KEY_HERE') {
+      try {
+        sendWhatsAppMessage(data);
+        console.log('✅ WhatsApp message sent successfully');
+      } catch (whatsappError) {
+        console.error('❌ WhatsApp sending failed:', whatsappError);
+        // Don't fail the registration if WhatsApp fails
+      }
     }
     
     // Return success response
@@ -81,6 +106,9 @@ function doPost(e) {
   }
 }
 
+// ==========================================
+// EMAIL CONFIRMATION FUNCTION
+// ==========================================
 function sendConfirmationEmail(data) {
   const subject = '✅ Registration Confirmed - IFPD Meet 2026';
   
@@ -222,12 +250,90 @@ Team Impex
   });
 }
 
-// Test function to verify the script works
+// ==========================================
+// WHATSAPP MESSAGE FUNCTION (CallMeBot API)
+// ==========================================
+function sendWhatsAppMessage(data) {
+  // Clean phone number - remove spaces and keep only digits and +
+  const cleanPhone = data.phone.replace(/\s/g, '');
+  
+  // Create the message
+  const message = `🎉 *Registration Confirmed!*
+
+Dear ${data.fullName},
+
+Your registration for *IFPD Meet 2026* is confirmed!
+
+📅 *Event Details:*
+Date: Saturday, 9 May 2026
+Time: 10:00 AM – 3:00 PM
+Venue: Mount Ridge International Convention Centre, Manjeri, Kerala
+
+📍 Get Directions: https://maps.app.goo.gl/guRwj3hVagK21Yyu5
+
+🎯 What to Expect:
+• Live xSeries IFPD demos
+• Keynote by Mr. Renjith Kesav
+• Network with 100+ leaders
+• Complimentary meals
+
+Need help? Call ${ORGANIZER_PHONE}
+
+See you at the event!
+Team Impex`;
+
+  // URL encode the message
+  const encodedMessage = encodeURIComponent(message);
+  
+  // CallMeBot API endpoint
+  const apiUrl = `https://api.callmebot.com/whatsapp.php?phone=${cleanPhone}&text=${encodedMessage}&apikey=${CALLMEBOT_API_KEY}`;
+  
+  // Send the request
+  const response = UrlFetchApp.fetch(apiUrl, {
+    method: 'get',
+    muteHttpExceptions: true
+  });
+  
+  const responseCode = response.getResponseCode();
+  
+  if (responseCode !== 200) {
+    throw new Error('WhatsApp API returned error: ' + responseCode);
+  }
+  
+  return true;
+}
+
+// ==========================================
+// TEST FUNCTION
+// ==========================================
 function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({
       status: 'API is running',
-      message: 'Use POST method to submit registration data'
+      message: 'Use POST method to submit registration data',
+      whatsappEnabled: ENABLE_WHATSAPP,
+      whatsappConfigured: CALLMEBOT_API_KEY !== 'YOUR_API_KEY_HERE'
     }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ==========================================
+// TEST WHATSAPP FUNCTION (Run this to test)
+// ==========================================
+function testWhatsApp() {
+  const testData = {
+    fullName: 'Test User',
+    phone: '+91 97786 65499', // Your phone number
+    email: 'test@example.com',
+    institute: 'Test Institute',
+    attendees: '1',
+    food: 'Veg'
+  };
+  
+  try {
+    sendWhatsAppMessage(testData);
+    console.log('✅ Test WhatsApp message sent successfully!');
+  } catch (error) {
+    console.error('❌ Test failed:', error);
+  }
 }
