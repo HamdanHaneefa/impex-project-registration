@@ -18,7 +18,7 @@
 // ==========================================
 // CONFIGURATION - UPDATE THESE VALUES
 // ==========================================
-const ORGANIZER_EMAIL = 'Info@impextechnologies.in';
+const ORGANIZER_EMAIL = 'develop.elamai@gmail.com';
 const ORGANIZER_PHONE = '+91 97786 65499';
 
 // CallMeBot API Key - Get yours by following WHATSAPP_SETUP_INSTRUCTIONS.txt
@@ -245,8 +245,8 @@ Team Impex
     body: textBody,
     htmlBody: htmlBody,
     name: 'IFPD Meet 2026 - Impex',
-    replyTo: ORGANIZER_EMAIL,
-    from: ORGANIZER_EMAIL  // This will work if you add the email as an alias
+    replyTo: 'Info@impextechnologies.in'
+    // Removed 'from' parameter - Gmail will use develop.elamai@gmail.com automatically
   });
 }
 

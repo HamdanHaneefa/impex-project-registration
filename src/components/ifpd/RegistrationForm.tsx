@@ -85,6 +85,15 @@ export function RegistrationForm({ variant = "section", id }: Props) {
       
       // Check if at least one storage succeeded
       if (result.sheetsSuccess || result.supabaseSuccess) {
+        // Track successful registration in Google Analytics
+        if (typeof window.gtag !== 'undefined') {
+          window.gtag('event', 'registration_complete', {
+            event_category: 'Registration',
+            event_label: 'IFPD Meet 2026',
+            value: 1
+          });
+        }
+        
         setSubmitted(true);
         
         // Log partial success warning (user won't see this)

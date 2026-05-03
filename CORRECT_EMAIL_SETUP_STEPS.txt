@@ -1,0 +1,138 @@
+✅ CORRECT WAY TO ADD SENDER EMAIL IN GMAIL
+============================================
+
+You're trying to use SMTP method - that's the HARD way!
+Use the EASIER method instead:
+
+==========================================
+STEP-BY-STEP (CORRECT METHOD)
+==========================================
+
+STEP 1: Go to Gmail Settings
+-----------------------------
+1. Open Gmail (hamdanhaneefa23@gmail.com)
+2. Click Settings (⚙️) → See all settings
+3. Go to "Accounts and Import" tab
+
+STEP 2: Add Email Address (NOT SMTP!)
+--------------------------------------
+1. Find section: "Send mail as:"
+2. Click "Add another email address"
+3. A popup window will open
+
+STEP 3: Fill in the Popup
+--------------------------
+In the popup window:
+- Name: Impex Team
+- Email address: Info@impextechnologies.in
+- ☐ UNCHECK "Treat as an alias" (leave it unchecked)
+- Click "Next Step"
+
+STEP 4: Choose "Send through Gmail"
+------------------------------------
+⚠️ IMPORTANT: On the next screen, you'll see TWO options:
+
+OPTION A: Send through Gmail (smtp.gmail.com) ← CHOOSE THIS ONE! ✅
+OPTION B: Send through impextechnologies.in SMTP servers
+
+Select OPTION A: "Send through Gmail"
+Then click "Next Step"
+
+STEP 5: Verify the Email
+-------------------------
+1. Gmail will send a verification code to Info@impextechnologies.in
+2. Open that email inbox
+3. Copy the verification code
+4. Paste it in Gmail
+5. Click "Verify"
+
+STEP 6: Done! ✅
+----------------
+Now emails will show as from "Impex Team <Info@impextechnologies.in>"
+
+==========================================
+WHY THIS METHOD IS BETTER
+==========================================
+
+❌ SMTP Method (what you were trying):
+- Needs email password
+- Needs SMTP server details
+- Needs port configuration
+- More complex
+- Can fail with security issues
+
+✅ Gmail Method (what you should use):
+- No password needed
+- No SMTP details needed
+- Gmail handles everything
+- Simple and secure
+- Just needs verification
+
+==========================================
+WHAT PASSWORD THEY WERE ASKING FOR
+==========================================
+
+The password they asked for is:
+- The password for Info@impextechnologies.in email account
+- NOT your Gmail password
+- NOT a new password
+
+But you DON'T need this if you use the "Send through Gmail" option!
+
+==========================================
+IF YOU DON'T HAVE ACCESS TO Info@impextechnologies.in
+==========================================
+
+If you can't access Info@impextechnologies.in inbox for verification:
+
+OPTION 1: Ask the email owner
+- Ask whoever manages Info@impextechnologies.in
+- They need to check the inbox for verification email
+- Give them the verification code
+
+OPTION 2: Use a different email
+- Create: events@impextechnologies.in
+- Or use: ifpdmeet@impextechnologies.in
+- Use an email YOU have access to
+
+OPTION 3: Keep using your Gmail
+- Emails will come from hamdanhaneefa23@gmail.com
+- But with name "IFPD Meet 2026 - Impex"
+- Still looks professional in the email body
+
+==========================================
+RECOMMENDED APPROACH
+==========================================
+
+For now, I recommend:
+
+1. ✅ Keep using hamdanhaneefa23@gmail.com as sender
+2. ✅ Email name shows as "IFPD Meet 2026 - Impex" (already set)
+3. ✅ Reply-to is set to Info@impextechnologies.in (already set)
+4. ✅ Email body shows Impex branding (already done)
+
+This means:
+- Emails are sent from your Gmail (works now)
+- But look professional with Impex branding
+- When people reply, it goes to Info@impextechnologies.in
+- Good enough for your event!
+
+Later, after the event, you can properly set up the email alias.
+
+==========================================
+WHAT TO DO RIGHT NOW
+==========================================
+
+OPTION A: If you have access to Info@impextechnologies.in inbox
+→ Follow steps above, choose "Send through Gmail"
+→ Verify the email
+→ Done!
+
+OPTION B: If you DON'T have access
+→ Close the popup
+→ Keep current setup (works fine!)
+→ Emails will be from your Gmail but look professional
+
+Which option applies to you?
+
+==========================================
