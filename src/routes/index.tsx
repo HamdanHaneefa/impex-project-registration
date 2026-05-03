@@ -806,7 +806,7 @@ function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-primary shrink-0" /> 
-              <a href="mailto:Info@impextechnologies.in" className="hover:underline">Info@impextechnologies.in</a>
+              <a href="mailto:ifpd@impexappliances.com" className="hover:underline">ifpd@impexappliances.com</a>
             </li>
             <li className="flex items-center gap-2">
               <svg className="h-4 w-4 text-primary shrink-0" fill="currentColor" viewBox="0 0 24 24">

@@ -1,0 +1,135 @@
+⏸️ EMAIL & WHATSAPP TEMPORARILY DISABLED
+=========================================
+
+✅ WHAT'S DISABLED NOW:
+- Email confirmations (paused)
+- WhatsApp messages (paused)
+
+✅ WHAT STILL WORKS:
+- Registration form (working)
+- Data saves to Google Sheets (working)
+- Data saves to Supabase (working)
+- Google Analytics tracking (working)
+
+==========================================
+WHAT YOU NEED TO DO NOW
+==========================================
+
+STEP 1: Update Google Apps Script
+----------------------------------
+1. Open your Google Sheet
+2. Go to Extensions → Apps Script
+3. Delete ALL old code
+4. Copy ALL code from: google-apps-script.js
+5. Save (Ctrl+S)
+6. Deploy → Manage deployments → Edit → New version → Deploy
+
+STEP 2: Test Registration
+--------------------------
+1. Go to your website
+2. Submit a test registration
+3. Check Google Sheet - data should save ✅
+4. NO email will be sent (this is expected)
+5. NO WhatsApp will be sent (this is expected)
+
+==========================================
+TOMORROW - HOW TO RE-ENABLE EMAIL
+==========================================
+
+When you're ready to enable email again:
+
+STEP 1: Open google-apps-script.js
+-----------------------------------
+Find these lines (around line 55):
+
+    // Send confirmation email to participant
+    // ⚠️ TEMPORARILY DISABLED - UNCOMMENT TO ENABLE
+    /*
+    try {
+      sendConfirmationEmail(data);
+      console.log('✅ Email sent successfully');
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError);
+      // Don't fail the registration if email fails
+    }
+    */
+
+STEP 2: Remove the comment marks
+---------------------------------
+Change FROM:
+    /*
+    try {
+      sendConfirmationEmail(data);
+      ...
+    }
+    */
+
+Change TO:
+    try {
+      sendConfirmationEmail(data);
+      console.log('✅ Email sent successfully');
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError);
+      // Don't fail the registration if email fails
+    }
+
+STEP 3: Update Apps Script
+---------------------------
+1. Copy updated code to Google Apps Script
+2. Save and deploy new version
+3. Test - emails should work again!
+
+==========================================
+TOMORROW - HOW TO RE-ENABLE WHATSAPP
+==========================================
+
+Same process as email:
+
+Find these lines (around line 65):
+
+    // Send WhatsApp message to participant
+    // ⚠️ TEMPORARILY DISABLED - UNCOMMENT TO ENABLE
+    /*
+    if (ENABLE_WHATSAPP && CALLMEBOT_API_KEY !== 'YOUR_API_KEY_HERE') {
+      try {
+        sendWhatsAppMessage(data);
+        ...
+      }
+    }
+    */
+
+Remove the /* and */ to enable.
+
+==========================================
+CURRENT STATUS
+==========================================
+
+✅ Registration form: WORKING
+✅ Google Sheets: SAVING DATA
+✅ Supabase: SAVING DATA
+✅ Google Analytics: TRACKING
+⏸️ Email: PAUSED (will resume tomorrow)
+⏸️ WhatsApp: PAUSED (will resume tomorrow)
+
+==========================================
+WHAT TO DO NOW
+==========================================
+
+1. ✅ Update Google Apps Script with new code
+2. ✅ Test registration (data should save)
+3. ✅ Go to sleep! 😴
+4. ✅ Tomorrow: Re-enable email when ready
+
+==========================================
+QUICK REFERENCE
+==========================================
+
+TO PAUSE EMAIL/WHATSAPP:
+→ Add /* before and */ after the code block
+
+TO RESUME EMAIL/WHATSAPP:
+→ Remove /* and */ from the code block
+
+==========================================
+
+Good night! Everything is saved and ready for tomorrow! 🌙

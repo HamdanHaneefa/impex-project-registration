@@ -18,7 +18,7 @@
 // ==========================================
 // CONFIGURATION - UPDATE THESE VALUES
 // ==========================================
-const ORGANIZER_EMAIL = 'develop.elamai@gmail.com';
+const ORGANIZER_EMAIL = 'ifpd@impexappliances.com';
 const ORGANIZER_PHONE = '+91 97786 65499';
 
 // CallMeBot API Key - Get yours by following WHATSAPP_SETUP_INSTRUCTIONS.txt
@@ -67,6 +67,8 @@ function doPost(e) {
     range.setValues([rowData]);
     
     // Send confirmation email to participant
+    // ⚠️ TEMPORARILY DISABLED - UNCOMMENT TO ENABLE
+    /*
     try {
       sendConfirmationEmail(data);
       console.log('✅ Email sent successfully');
@@ -74,8 +76,11 @@ function doPost(e) {
       console.error('❌ Email sending failed:', emailError);
       // Don't fail the registration if email fails
     }
+    */
     
     // Send WhatsApp message to participant
+    // ⚠️ TEMPORARILY DISABLED - UNCOMMENT TO ENABLE
+    /*
     if (ENABLE_WHATSAPP && CALLMEBOT_API_KEY !== 'YOUR_API_KEY_HERE') {
       try {
         sendWhatsAppMessage(data);
@@ -85,6 +90,7 @@ function doPost(e) {
         // Don't fail the registration if WhatsApp fails
       }
     }
+    */
     
     // Return success response
     return ContentService
@@ -245,8 +251,8 @@ Team Impex
     body: textBody,
     htmlBody: htmlBody,
     name: 'IFPD Meet 2026 - Impex',
-    replyTo: 'Info@impextechnologies.in'
-    // Removed 'from' parameter - Gmail will use develop.elamai@gmail.com automatically
+    replyTo: 'ifpd@impexappliances.com'
+    // Removed 'from' parameter - Gmail will use the account running the script
   });
 }
 
